@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=500, initial-scale=1" />
+
+    <!-- Change this to your name-->
+    <meta name="author" content="Alejandro Mercado" />
+
+    <title>Sonic Lens</title>
+    <!-- Classless CSS Stylesheet - https://watercss.kognise.dev/ -->
+    <link rel="stylesheet" href="./css/water.css" />
+
+    <style>
+      #songs {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        align-content: center;
+      }
+      .card-link:hover {
+        text-decoration: none;
+      }
+      .card {
+        width: 230px;
+        margin: 20px 10px;
+        padding: 7px;
+        border-radius: 5%;
+        background-color: rgb(14, 19, 29);
+        text-align: center;
+        transition: 150ms;
+      }
+      .card:hover {
+        box-shadow:
+          5px 10px 0 rgb(16, 21, 32),
+          10px 15px 2px rgba(14, 19, 29, 0.4),
+          15px 25px 4px rgba(14, 19, 29, 0.2);
+        background-color: rgb(72, 100, 156);
+        transform: scale(1.06);
+      }
+      .card-image {
+        border-radius: 5%;
+        transition: 200ms;
+      }
+      .song-name {
+        margin-top: 10px;
+      }
+      .song-year {
+        margin: auto;
+      }
+      .news {
+        display: table;
+      }
+      .news-input {
+        display: table-cell;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sonic Lens</h1>
+      <p>Getting you one step closer to the best tracks.</p>
+    </header>
+
+    <nav id="menu"></nav>
+
+    <p>Want another band? Submit your suggestion <a href="newArtist.html">here</a></p>
+
+    <hr />
+
+    <main>
+      <h2 id="selected-artist">
+        <!-- Dynamically update the selected category title -->
+      </h2>
+
+      <p>(Click on any card to open the song on a new tab)</p>
+      <div id="songs"></div>
+    </main>
+
+    <footer>
+      <h2>Join our Sonicletter</h2>
+      <p>and get the latest news on the best bands in the world!</p>
+      <form class="news" method="post" action="https://httpbin.org/post">
+        <div class="news-input">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            size="27"
+            maxlength="50"
+            placeholder="example@awesomewebsite.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="news-input">
+          <input type="submit" id="join" value="JOIN" />
+        </div>
+      </form>
+    </footer>
+
+    <!-- JavaScript Data Files -->
+    <script src="./js/artists.js"></script>
+    <script src="./js/songs.js"></script>
+
+    <!-- Main App JavaScript File -->
+    <script src="./js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="author" content="Alejandro Mercado" />
+    <link rel="stylesheet" href="./css/water.css" />
+    <title>Sonic Suggestion</title>
+
+    <style>
+      #suggestion {
+        padding: 20px;
+        background-color: rgb(14, 19, 29);
+        border-radius: 2%;
+      }
+      label {
+        margin-bottom: 12px;
+        font-size: 18px;
+      }
+      .urls {
+        display: table;
+      }
+      .url-cont {
+        display: table-cell;
+      }
+      .add {
+        padding: 10px;
+        font-size: 14px;
+      }
+      #reason {
+        width: 320px;
+        height: 70px;
+      }
+      .btn {
+        border: 1px rgb(221, 221, 221) solid;
+        transition: 100ms;
+      }
+      .btn:hover {
+        background-color: rgb(221, 221, 221);
+        color: rgb(14, 19, 29);
+        border: 1px rgb(14, 19, 29) solid;
+      }
+      #submit:hover {
+        background-color: rgb(221, 221, 221);
+        color: rgb(14, 19, 29);
+        border: 1px rgb(14, 19, 29) solid;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sonic Suggestion</h1>
+    </header>
+
+    <form action="index.html">
+      <button type="submit">Home</button>
+    </form>
+
+    <hr />
+
+    <form id="suggestion" method="post" action="https://httpbin.org/post">
+      <h2 style="margin-top: 0; margin-bottom: 30px">Tell us more about the artist you want</h2>
+      <label for="name">Artist Name* :</label><br />
+      <input type="text" id="name" name="name" placeholder="Name" size="35" required /><br />
+
+      <label for="genre">Music Genre* :</label><br />
+      <datalist id="genres">
+        <option value="Pop"></option>
+        <option value="Rock"></option>
+        <option value="Metal"></option>
+        <option value="Grunge"></option>
+        <option value="Reggaeton"></option>
+        <option value="Indie"></option>
+        <option value="Alternative"></option>
+        <option value="Hip-Hop"></option>
+        <option value="Punk"></option>
+        <option value="EDM"></option>
+      </datalist>
+      <input
+        type="text"
+        id="genre"
+        name="genre"
+        placeholder="Choose an option or write your own :)"
+        size="35"
+        list="genres"
+        required
+      /><br />
+
+      <label>Social Media Profile(s) :</label><br />
+      <div id="socials">
+        <datalist id="socials-list">
+          <option value="Instagram"></option>
+          <option value="Facebook"></option>
+          <option value="X"></option>
+          <option value="Spotify"></option>
+          <option value="YouTube"></option>
+        </datalist>
+        <div class="urls">
+          <div class="url-cont">
+            <input
+              type="text"
+              class="url-name"
+              name="social-name"
+              placeholder="Platform"
+              list="socials-list"
+              size="9"
+            />
+          </div>
+          <div class="url-cont">
+            <input type="url" name="social-url" placeholder="URL" size="18" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="add btn" id="add-social" name="add-social">+ Add Social</button
+      ><br /><br />
+
+      <label>Link(s) to their music :</label><br />
+      <div id="songs">
+        <div class="urls">
+          <div class="url-cont">
+            <input type="text" id="song-name" name="song-name" placeholder="Song Name" size="18" />
+          </div>
+          <div class="url-cont">
+            <input type="url" id="song-url" name="song-url" placeholder="URL" size="9" />
+          </div>
+          <div class="url-cont">
+            <input type="checkbox" id="explicit" name="song-1-explicit" />
+            <label for="explicit">Explicit?</label>
+          </div>
+        </div>
+      </div>
+      <button type="button" id="add-song" class="add btn" name="add-song">+ Add Song</button
+      ><br /><br />
+
+      <label for="reason">Why should we add this artist?* :</label>
+      <textarea id="reason" name="reason" required></textarea><br />
+
+      <input type="submit" class="btn" id="submit" />
+    </form>
+
+    <script src="./js/suggestion.js"></script>
+  </body>
+</html>
