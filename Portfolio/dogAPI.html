@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dog API</title>
+    </head>
+    <body>
+        <h1>Dog Breeds</h1><br>
+        <form id="form" action="#">
+            <select id="breeds" name="breeds"></select>
+            <input type="number" id="img-count" min="1" max="100" value="5">
+            <input type="button" id="btn-load" value="Show me the dogs!">
+        </form>
+        <div id="images-container">
+
+        </div>
+
+        <script>
+            window.onload = function() {
+                loadDogBreeds();
+            }
+
+            function extractBreedList(response) {
+                return Object.keys(response.message);
+            }
+
+            function extractBreedImages(response) {
+                return response.message;
+            }
+
+            function getImageCount() {
+                var number = document.querySelector("#img-count");
+                return number.value;
+            }
+
+            function updateBreedImages(breedImages) {
+                var imagesContainer = document.querySelector('#images-container');
+                imagesContainer.innerHTML = '';
+
+                function createBreedImage(url) {
+                    var img = document.createElement("img");
+                    img.src = url;
+                    img.style = 'width: 250px'
+                    return img;
+                }
+
+                breedImages.forEach(function (image) {
+                    imagesContainer.appendChild(createBreedImage(image));
+                })
+            }
+
+            function loadBreedImages(breed) {
+                var imageCount = getImageCount();
+
+                var url = `https://dog.ceo/api/breed/${breed}/images/random/${imageCount}`;
+                var xhr = new XMLHttpRequest();
+
+                xhr.onload = function () {
+                    var response = JSON.parse(this.responseText);
+                    var breedImages = extractBreedImages(response);
+                    updateBreedImages(breedImages);
+                }
+
+                xhr.open("GET", url);
+                xhr.send();
+            }
+
+            function updateBreedList(breedList) {
+                var select = document.querySelector("#breeds");
+                var btnLoad = document.querySelector("#btn-load");
+
+                function createBreedOption(name) {
+                    var option = document.createElement("option");
+                    option.value = name;
+                    option.innerHTML = name;
+
+                    return option;
+                }
+
+                breedList.forEach(function(breed) {
+                    select.appendChild(createBreedOption(breed));
+                });
+
+                btnLoad.onclick = function(e) {
+                    var breed = select.value;
+                    loadBreedImages(breed);
+                };
+            }
+            
+            function loadDogBreeds() {
+                var url = "https://dog.ceo/api/breeds/list/all";
+                var xhr = new XMLHttpRequest();
+
+                xhr.onload = function () {
+                    var response = JSON.parse(this.responseText);
+                    var breedList = extractBreedList(response);
+                    updateBreedList(breedList);
+                }
+
+                xhr.open("GET", url);
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>
