@@ -2,6 +2,12 @@
 <html>
     <head>
         <title>Dog API</title>
+        <link rel="stylesheet" href="./css/water.css" />
+        <style>
+            #images-container {
+                display: grid;
+            }
+        </style>
     </head>
     <body>
         <h1>Dog Breeds</h1><br>
@@ -39,7 +45,7 @@
                 function createBreedImage(url) {
                     var img = document.createElement("img");
                     img.src = url;
-                    img.style = 'width: 250px'
+                    img.style = 'width: 250px; aspect-ratio: 1/1; padding: 5 px'
                     return img;
                 }
 
