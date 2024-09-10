@@ -163,6 +163,7 @@ section {
 .project-item div:first-child {
     display: flex;
     flex-direction: column;
+    max-width: 647px;
     gap: 14px;
 }
 
