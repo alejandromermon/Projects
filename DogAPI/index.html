@@ -4,19 +4,74 @@
         <title>Dog API</title>
         <link rel="stylesheet" href="./css/water.css" />
         <style>
-            #images-container {
-                display: grid;
+            header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 14px;
             }
+
+            nav {
+                color: var(--secondary-color);
+                display: flex;
+                align-items: center;
+                gap: 32px;
+            }
+
+            .descr {
+                max-width: 70%;
+            }
+            
+            .resize {
+                max-width: 150px;
+                border-color: rgb(54, 84, 143);
+            }
+
+            .form-position {
+                padding-left: 25px;
+            }
+
+            .images-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                border-radius: 8px;
+                gap: 20px;
+            }
+
+            .images-container img {
+                width: 250px; 
+                aspect-ratio: 1/1;
+                border: 0.5px solid rgb(35, 54, 92);
+                border-radius: 8px;
+                padding: 5 px; 
+                box-shadow:
+                    5px 10px 0 rgb(16, 21, 32),
+                    10px 15px 2px rgba(14, 19, 29, 0.4),
+                    15px 25px 4px rgba(14, 19, 29, 0.2);            
+                }
         </style>
     </head>
     <body>
-        <h1>Dog Breeds</h1><br>
-        <form id="form" action="#">
-            <select id="breeds" name="breeds"></select>
-            <input type="number" id="img-count" min="1" max="100" value="5">
-            <input type="button" id="btn-load" value="Show me the dogs!">
-        </form>
-        <div id="images-container">
+        <header>
+            <h2>Dog Breeds</h2><br>
+            <nav>
+                <a target="_blank" href="https://alejandromermon.netlify.app/">Portfolio</a>
+                <a target="_blank" href="https://github.com/alejandromermon">GitHub</a>
+                <a target="_blank" href="https://www.linkedin.com/in/alejandromermon">LinkedIn</a>
+            </nav>
+        </header>
+        <h3 class="descr">This is a website that displays the number of images specified from the desired dog breed by connecting to the dog.ceo API.</h3><br>
+        <div class="form-position">
+            <form id="form" action="#">
+                <fieldset class="resize">
+                    <select id="breeds" name="breeds"></select>
+                    <input type="number" id="img-count" min="1" max="100" value="5">
+                    <input type="button" id="btn-load" value="Show me the dogs!">
+                </fieldset>
+            </form><br>
+        </div>
+        <div class="images-container">
 
         </div>
 
@@ -39,13 +94,12 @@
             }
 
             function updateBreedImages(breedImages) {
-                var imagesContainer = document.querySelector('#images-container');
+                var imagesContainer = document.querySelector('.images-container');
                 imagesContainer.innerHTML = '';
 
                 function createBreedImage(url) {
                     var img = document.createElement("img");
                     img.src = url;
-                    img.style = 'width: 250px; aspect-ratio: 1/1; padding: 5 px'
                     return img;
                 }
 
